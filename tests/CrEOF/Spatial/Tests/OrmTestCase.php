@@ -313,11 +313,14 @@ abstract class OrmTestCase extends \PHPUnit_Framework_TestCase
         $configuration = $this->getEntityManager()->getConfiguration();
 
         if ($this->getPlatform()->getName() == 'postgresql') {
+            $configuration->addCustomStringFunction('geometry', 'CrEOF\Spatial\ORM\Query\AST\Functions\PostgreSql\Geometry');
             $configuration->addCustomStringFunction('st_asbinary', 'CrEOF\Spatial\ORM\Query\AST\Functions\PostgreSql\STAsBinary');
             $configuration->addCustomStringFunction('st_astext', 'CrEOF\Spatial\ORM\Query\AST\Functions\PostgreSql\STAsText');
             $configuration->addCustomNumericFunction('st_area', 'CrEOF\Spatial\ORM\Query\AST\Functions\PostgreSql\STArea');
+            $configuration->addCustomNumericFunction('st_buffer', 'CrEOF\Spatial\ORM\Query\AST\Functions\PostgreSql\STBuffer');
             $configuration->addCustomStringFunction('st_centroid', 'CrEOF\Spatial\ORM\Query\AST\Functions\PostgreSql\STCentroid');
             $configuration->addCustomStringFunction('st_closestpoint', 'CrEOF\Spatial\ORM\Query\AST\Functions\PostgreSql\STClosestPoint');
+            $configuration->addCustomStringFunction('st_collect', 'CrEOF\Spatial\ORM\Query\AST\Functions\PostgreSql\STCollect');
             $configuration->addCustomNumericFunction('st_contains', 'CrEOF\Spatial\ORM\Query\AST\Functions\PostgreSql\STContains');
             $configuration->addCustomNumericFunction('st_containsproperly', 'CrEOF\Spatial\ORM\Query\AST\Functions\PostgreSql\STContainsProperly');
             $configuration->addCustomNumericFunction('st_covers', 'CrEOF\Spatial\ORM\Query\AST\Functions\PostgreSql\STCovers');
@@ -333,6 +336,8 @@ abstract class OrmTestCase extends \PHPUnit_Framework_TestCase
             $configuration->addCustomNumericFunction('st_length', 'CrEOF\Spatial\ORM\Query\AST\Functions\PostgreSql\STLength');
             $configuration->addCustomNumericFunction('st_linecrossingdirection', 'CrEOF\Spatial\ORM\Query\AST\Functions\PostgreSql\STLineCrossingDirection');
             $configuration->addCustomStringFunction('st_makeenvelope', 'CrEOF\Spatial\ORM\Query\AST\Functions\PostgreSql\STMakeEnvelope');
+            $configuration->addCustomStringFunction('st_overlaps', 'CrEOF\Spatial\ORM\Query\AST\Functions\PostgreSql\STOverlaps');
+            $configuration->addCustomStringFunction('st_snaptogrid', 'CrEOF\Spatial\ORM\Query\AST\Functions\PostgreSql\STSnapToGrid');
             $configuration->addCustomStringFunction('st_startpoint', 'CrEOF\Spatial\ORM\Query\AST\Functions\PostgreSql\STStartPoint');
             $configuration->addCustomStringFunction('st_summary', 'CrEOF\Spatial\ORM\Query\AST\Functions\PostgreSql\STSummary');
         }
